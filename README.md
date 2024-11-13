@@ -3,6 +3,12 @@
 
 Radio Browser é um app React que utiliza Material UI e outras tecnologias modernas para criar uma interface de usuário para acessar e controlar estações de rádio.
 
+
+## 🎁 Apresentação
+
+- **Apresentação**: https://docs.google.com/presentation/d/1Fpy48GuPa2sIt20rSAir2Q88OzoXHcCvbNeUar4IB4c/edit?usp=sharing
+
+
 ## 🛠 Tecnologias
 
 Este projeto utiliza as seguintes tecnologias:
