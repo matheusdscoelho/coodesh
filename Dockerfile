@@ -4,9 +4,10 @@ FROM node:18 AS build
 # Define o diretório de trabalho dentro do container
 WORKDIR /app
 
-# Copia o package.json, yarn.lock e instala as dependências
+# Copia o package.json e yarn.lock para instalar as dependências
 COPY package.json yarn.lock ./
 
+# Instala as dependências
 RUN yarn install
 
 # Copia o código do aplicativo para o diretório de trabalho
@@ -25,10 +26,10 @@ RUN yarn global add serve
 WORKDIR /app
 
 # Copia os arquivos do build para a nova imagem
-COPY --from=build /app/build /app
+COPY --from=build /app/build /app/build
 
 # Expõe a porta 3000 para o serviço
 EXPOSE 3000
 
 # Inicia o `serve` para servir a aplicação na porta 3000
-CMD ["serve", "-s", ".", "-l", "3000"]
+CMD ["serve", "-s", "build", "-l", "3000"]

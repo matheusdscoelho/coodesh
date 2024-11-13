@@ -38,7 +38,7 @@ const EditStationDialog: React.FC<EditStationDialogProps> = ({
   };
 
   return (
-    <Dialog open={open} onClose={onClose}>
+    <Dialog open={open} onClose={onClose} data-testid="edit-station-dialog">
       <DialogTitle>Edit Station Information</DialogTitle>
       <DialogContent>
         <TextField
@@ -48,6 +48,7 @@ const EditStationDialog: React.FC<EditStationDialogProps> = ({
           onChange={handleInputChange}
           fullWidth
           margin="normal"
+          data-testid="station-name-input"
         />
         <TextField
           label="Country"
@@ -56,22 +57,7 @@ const EditStationDialog: React.FC<EditStationDialogProps> = ({
           onChange={handleInputChange}
           fullWidth
           margin="normal"
-        />
-        <TextField
-          label="State"
-          name="state"
-          value={editedStation.state}
-          onChange={handleInputChange}
-          fullWidth
-          margin="normal"
-        />
-        <TextField
-          label="Language"
-          name="language"
-          value={editedStation.language}
-          onChange={handleInputChange}
-          fullWidth
-          margin="normal"
+          data-testid="station-country-input"
         />
         <TextField
           label="Votes"
@@ -81,22 +67,14 @@ const EditStationDialog: React.FC<EditStationDialogProps> = ({
           fullWidth
           margin="normal"
           type="number"
-        />
-        <TextField
-          label="Bitrate"
-          name="bitrate"
-          value={editedStation.bitrate}
-          onChange={handleInputChange}
-          fullWidth
-          margin="normal"
-          type="number"
+          data-testid="station-votes-input"
         />
       </DialogContent>
       <DialogActions>
-        <Button onClick={onClose} color="primary">
+        <Button onClick={onClose} color="primary" data-testid="cancel-button">
           Cancel
         </Button>
-        <Button onClick={handleSaveEdit} color="primary">
+        <Button onClick={handleSaveEdit} color="primary" data-testid="save-button">
           Save
         </Button>
       </DialogActions>

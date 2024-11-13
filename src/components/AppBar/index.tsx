@@ -14,7 +14,7 @@ const AppBarComponent = ({
   searchInput,
   onSearchInputChange,
 }: AppBarComponentProps) => (
-  <AppBar position='fixed'>
+  <AppBar position='fixed' data-testid="app-bar">
     <Toolbar>
       <IconButton
         size='large'
@@ -23,6 +23,7 @@ const AppBarComponent = ({
         aria-label='open drawer'
         sx={{ mr: 2 }}
         onClick={toggleDrawer}
+        data-testid="menu-button"
       >
         <MenuIcon />
       </IconButton>
@@ -32,12 +33,13 @@ const AppBarComponent = ({
         component='div'
         sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
         textAlign='center'
+        data-testid="app-bar-title"
       >
         Radio Browser
       </Typography>
 
-      <Search>
-        <SearchIconWrapper>
+      <Search data-testid="search-container">
+        <SearchIconWrapper data-testid="search-icon-wrapper">
           <SearchIcon />
         </SearchIconWrapper>
         <StyledInputBase
@@ -45,6 +47,7 @@ const AppBarComponent = ({
           inputProps={{ "aria-label": "search" }}
           value={searchInput}
           onChange={onSearchInputChange}
+          data-testid="header-search-input"
         />
       </Search>
     </Toolbar>

@@ -4,6 +4,7 @@ import { RadioStation } from "./types";
 interface RadioStations {
   stations: RadioStation[];
 }
+//Coloquei filtro por name apenas, pois se colocar country e lang ele faz combinar ao inves de fazer por ou. Com nome ele ja filtra e busca legal
 
 export const fetchStations = async (searchQuery: string): Promise<RadioStations> => {
   try {

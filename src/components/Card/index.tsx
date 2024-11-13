@@ -40,7 +40,7 @@ const MusicStyleCard: React.FC<MusicStyleCardProps> = ({
   };
 
   return (
-    <Card variant='elevation'>
+    <Card variant='elevation' data-testid={`music-style-card-${station.stationuuid}`}>
       <CardContent>
         <Box
           display='flex'
@@ -49,19 +49,23 @@ const MusicStyleCard: React.FC<MusicStyleCardProps> = ({
           justifyContent='space-between'
         >
           <Box display='flex' flexDirection='column'>
-            <IconButton sx={{ marginTop: "10px" , backgroundColor:"#4d4d56"}} onClick={onSelect}>
+            <IconButton
+              sx={{ marginTop: "10px", backgroundColor: "#4d4d56" }}
+              onClick={onSelect}
+              data-testid="play-stop-button"
+            >
               {isPlaying ? (
-                <Square sx={{ color: "black" }} />
+                <Square sx={{ color: "black" }} data-testid="stop-icon" />
               ) : (
-                <PlayArrow sx={{ color: "black" }} />
+                <PlayArrow sx={{ color: "black" }} data-testid="play-icon" />
               )}
             </IconButton>
           </Box>
           <Box display='flex' flexDirection='column'>
-            <Typography variant='h6' align='center'>
+            <Typography variant='h6' align='center' data-testid="station-name">
               {station.name}
             </Typography>
-            <Typography variant='body2' color='text.secondary' align='center'>
+            <Typography variant='body2' color='text.secondary' align='center' data-testid="station-info">
               {station.country}, {station.tags}
             </Typography>
           </Box>
@@ -69,10 +73,11 @@ const MusicStyleCard: React.FC<MusicStyleCardProps> = ({
             <IconButton
               onClick={onRemove}
               sx={{ color: "#000", marginRight: 1 }}
+              data-testid="delete-button"
             >
               <DeleteIcon />
             </IconButton>
-            <IconButton onClick={handleDialogOpen} sx={{ color: "#000" }}>
+            <IconButton onClick={handleDialogOpen} sx={{ color: "#000" }} data-testid="edit-button">
               <EditIcon />
             </IconButton>
           </Box>
@@ -84,6 +89,7 @@ const MusicStyleCard: React.FC<MusicStyleCardProps> = ({
         station={station}
         onClose={handleDialogClose}
         onSave={handleSaveEdit}
+        data-testid="edit-station-dialog"
       />
     </Card>
   );

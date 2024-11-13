@@ -43,18 +43,24 @@ const SidebarDrawer: React.FC<SidebarDrawerProps> = ({
           boxSizing: "border-box",
         },
       }}
+      data-testid='sidebar-drawer'
     >
       <List>
         <ListItem>
-          <ListItemButton onClick={toggleDrawer}>
-            <ListItemIcon>{open ? <ChevronLeft /> : <Menu />}</ListItemIcon>
-            {open && <ListItemText primary='Menu' />}
+          <ListItemButton
+            onClick={toggleDrawer}
+            data-testid='toggle-drawer-button'
+          >
+            <ListItemIcon data-testid='drawer-icon'>
+              {open ? <ChevronLeft /> : <Menu />}
+            </ListItemIcon>
+            {open && <ListItemText primary='Menu' data-testid='menu-text' />}
           </ListItemButton>
         </ListItem>
-        <Divider />
+        <Divider data-testid='drawer-divider' />
 
         {open && (
-          <ListItem>
+          <ListItem data-testid='search-container'>
             <TextField
               label='Search Stations'
               variant='filled'
@@ -67,23 +73,34 @@ const SidebarDrawer: React.FC<SidebarDrawerProps> = ({
                   background: "#4d4d56",
                 },
               }}
+              data-testid='search-input'
             />
           </ListItem>
         )}
-        <Divider />
+        <Divider data-testid='search-divider' />
 
         {open &&
           stations.map((station) => (
-            <ListItem key={station.stationuuid}>
+            <ListItem
+              key={station.stationuuid}
+              data-testid={`station-${station.stationuuid}`}
+            >
               <ListItemButton
                 onClick={() => onStationSelect(station)}
                 sx={{ backgroundColor: "#4d4d56", padding: 1, borderRadius: 5 }}
+                data-testid={`station-button-${station.stationuuid}`}
               >
-                <ListItemText primary={station.name} />
-                <ListItemIcon>
-                  {selectedStations.includes(station) && (
-                    <CheckCircle color='primary' />
-                  )}
+                <ListItemText
+                  primary={station.name}
+                  data-testid={`station-name-${station.stationuuid}`}
+                />
+                <ListItemIcon
+                  data-testid={`station-check-icon-${station.stationuuid}`}
+                >
+                  {selectedStations.find(
+                    (selectedStation) =>
+                      selectedStation.stationuuid === station.stationuuid
+                  ) && <CheckCircle color='primary' />}
                 </ListItemIcon>
               </ListItemButton>
             </ListItem>
